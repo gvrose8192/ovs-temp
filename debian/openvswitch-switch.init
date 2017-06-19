@@ -124,11 +124,11 @@ case $1 in
     reload | force-reload)
         # The OVS daemons keep up-to-date.
         ;;
-    restart)
+    restart | ovsrestart)
         shift
         restart "$@"
         ;;
-    status)
+    status | ovsstatus)
         ovs_ctl status
         exit $?
         ;;
