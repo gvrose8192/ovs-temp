@@ -55,6 +55,16 @@ export OVS_MISSING_KMOD_OK
 [ -z "${OVS_FORCE_RELOAD_KMOD}" ] && OVS_FORCE_RELOAD_KMOD=yes || true
 export OVS_FORCE_RELOAD_KMOD
 
-#DEBHELPER#
+if [ "$1" = "configure" ] || [ "$1" = "abort-upgrade" ]; then
+    if [ -x "/etc/init.d/openvswitch-switch" ]; then
+        update-rc.d openvswitch-switch defaults >/dev/null
+        if [ -n "$2" ]; then
+            _dh_action=ovsrestart
+        else
+            _dh_action=start
+        fi
+        invoke-rc.d openvswitch-switch $_dh_action || exit $?
+    fi
+fi
 
 exit 0
