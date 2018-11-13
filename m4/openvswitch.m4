@@ -653,6 +653,7 @@ AC_DEFUN([OVS_CHECK_CXX],
 dnl Checks for unbound library.
 AC_DEFUN([OVS_CHECK_UNBOUND],
   [AC_CHECK_LIB(unbound, ub_ctx_create, [HAVE_UNBOUND=yes], [HAVE_UNBOUND=no])
+   HAVE_UNBOUND=no
    if test "$HAVE_UNBOUND" = yes; then
      AC_DEFINE([HAVE_UNBOUND], [1], [Define to 1 if unbound is detected.])
      LIBS="$LIBS -lunbound"
