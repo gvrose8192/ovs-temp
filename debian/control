@@ -16,7 +16,6 @@ Build-Depends: graphviz,
                python3-all,
                python3-twisted-conch,
                python3-zopeinterface,
-               libunbound-dev,
                libunwind-dev
 Standards-Version: 3.9.3
 Homepage: http://openvswitch.org/
@@ -228,7 +227,6 @@ Multi-Arch: same
 Depends:
  libopenvswitch (>= ${binary:Version}),
  libssl-dev,
- libunbound-dev,
  ${misc:Depends}
 Conflicts: openvswitch-dev
 Replaces: openvswitch-dev
