@@ -1,0 +1,6 @@
+vport-gre.ko external
+vport-lisp.ko external
+vport-geneve.ko external
+vport-vxlan.ko external
+vport-stt.ko external
+openvswitch.ko external
