@@ -23,6 +23,8 @@ EXTRA_DIST += \
 	rhel/openvswitch.spec.in \
 	rhel/openvswitch-fedora.spec \
 	rhel/openvswitch-fedora.spec.in \
+	rhel/openvswitch-suse.spec \
+	rhel/openvswitch-suse.spec.in \
 	rhel/usr_share_openvswitch_scripts_ovs-systemd-reload \
 	rhel/usr_share_openvswitch_scripts_sysconfig.template \
 	rhel/usr_share_openvswitch_scripts_systemd_sysconfig.template \
