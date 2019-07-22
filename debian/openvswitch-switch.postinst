@@ -25,6 +25,10 @@ case "$1" in
         if ! test -e $DEFAULT; then
             cp $TEMPLATE $DEFAULT
         fi
+        if grep 'no-self-confinement' $DEFAULT  >/dev/null 2>&1; then :;
+        else
+            echo "OVS_CTL_OPTS=--no-self-confinement" >> $DEFAULT
+        fi
         # Certain versions of upstream Ubuntu's openvswitch packages (which
         # are forks) may install upstart files which are incompatible
         # with the packages generated from this repo. Remove them.
