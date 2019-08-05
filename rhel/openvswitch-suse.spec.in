@@ -168,6 +168,10 @@ if [ -e "%{_tmppath}/ovs-upgrade-from-sysv" ]; then
     rm "%{_tmppath}/ovs-upgrade-from-sysv"
 fi
 
+if [ "$1" = "1" ]; then
+    systemctl start openvswitch
+fi
+
 %pre selinux-policy
 %selinux_relabel_pre -s targeted
 if [ -x "/etc/init.d/openvswitch" ]; then
