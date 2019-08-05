@@ -358,6 +358,11 @@ fi
         systemctl restart openvswitch
         rm "%{_tmppath}/ovs-upgrade-from-sysv"
     fi
+    # For NSX, start OVS in case of fresh installs, to prevent unnecessary
+    # support cases. In case of upgrades, mgmt plane will take care.
+    if [ $1 -eq 1 ]; then
+        systemctl start openvswitch
+    fi
 %endif
 
 %post selinux-policy
