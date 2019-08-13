@@ -156,7 +156,7 @@ install -D -m 0644 lib/.libs/libopenvswitch.a \
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if grep 'no-self-confinement' %{_sysconfdir}/sysconfig/openvswitch >/dev/null 2>&1; then :;
+if grep 'OPTIONS=--no-self-confinement' %{_sysconfdir}/sysconfig/openvswitch >/dev/null 2>&1; then :;
 else
     echo "OPTIONS=--no-self-confinement" >> %{_sysconfdir}/sysconfig/openvswitch
 fi
