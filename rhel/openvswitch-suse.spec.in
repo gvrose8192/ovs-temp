@@ -155,6 +155,11 @@ install -D -m 0644 lib/.libs/libopenvswitch.a \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pre
+if [ -x "/etc/init.d/openvswitch" ]; then
+    touch %{_tmppath}/ovs-upgrade-from-sysv
+fi
+
 %post
 if grep 'OPTIONS=--no-self-confinement' %{_sysconfdir}/sysconfig/openvswitch >/dev/null 2>&1; then :;
 else
@@ -174,9 +179,6 @@ fi
 
 %pre selinux-policy
 %selinux_relabel_pre -s targeted
-if [ -x "/etc/init.d/openvswitch" ]; then
-    touch %{_tmppath}/ovs-upgrade-from-sysv
-fi
 
 %post selinux-policy
 %selinux_modules_install -s targeted %{_datadir}/selinux/packages/%{name}/openvswitch-custom.pp
