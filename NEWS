@@ -2,6 +2,8 @@ v2.13.1 - xx xxx xxxx
 ---------------------
    - OpenFlow:
      * New action "delete_field".
+   - Linux datapath:
+     * Support for kernel versions up to 5.5.x.
 
 v2.13.0 - 14 Feb 2020
 ---------------------
