@@ -1126,6 +1126,8 @@ AC_DEFUN([OVS_CHECK_LINUX_COMPAT], [
   OVS_FIND_OP_PARAM_IFELSE([$KSRC/include/net/rtnetlink.h],
                            [validate], [extack],
                            [OVS_DEFINE([HAVE_RTNLOP_VALIDATE_WITH_EXTACK])])
+  OVS_GREP_IFELSE([$KSRC/include/net/inet_frag.h], [fqdir],
+                  [OVS_DEFINE([HAVE_INET_FRAG_FQDIR])])
 
   if cmp -s datapath/linux/kcompat.h.new \
             datapath/linux/kcompat.h >/dev/null 2>&1; then
