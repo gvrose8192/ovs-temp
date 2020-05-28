@@ -1,4 +1,3 @@
-#
 #  Copyright (c) 2018 Eelco Chaudron
 #
 #  This program is free software; you can redistribute it and/or

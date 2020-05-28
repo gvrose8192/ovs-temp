@@ -9,6 +9,8 @@
 
 %define oname openvswitch
 
+%global __python %{__python3}
+
 Name:             %{oname}-dkms
 Version:          @VERSION@
 Release:          1%{?dist}
