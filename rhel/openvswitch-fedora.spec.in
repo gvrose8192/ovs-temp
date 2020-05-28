@@ -23,6 +23,10 @@
 
 #%define kernel 2.6.40.4-5.fc15.x86_64
 
+# avoid python version collision and dont't compile unnecessary bytecode for
+# python scripts
+%define _python_bytecompile_errors_terminate_build 0
+
 # If libcap-ng isn't available and there is no need for running OVS
 # as regular user, specify the '--without libcapng'
 %bcond_without libcapng
@@ -35,6 +39,8 @@
 
 # Enable PIE, bz#955181
 %global _hardened_build 1
+
+%global __python %{__python3}
 
 # some distros (e.g: RHEL-7) don't define _rundir macro yet
 # Fedora 15 onwards uses /run as _rundir

@@ -15,9 +15,8 @@ Build-Depends: graphviz,
                procps,
                python3-all,
                python3-sphinx,
-               python3-twisted,
-               python3-zope.interface,
-               libunwind-dev
+               python3-twisted | python3-twisted-experimental,
+               libunwind-dev | libunwind8-dev
 Standards-Version: 3.9.3
 Homepage: http://openvswitch.org/
 
