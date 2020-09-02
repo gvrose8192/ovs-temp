@@ -447,10 +447,8 @@ fi
 %{_unitdir}/ovs-vswitchd.service
 %{_unitdir}/ovs-delete-transient-ports.service
 %{_datadir}/openvswitch/scripts/openvswitch.init
-%if ! (0%{?rhel} > 7 || 0%{?fedora} > 28)
 %{_sysconfdir}/sysconfig/network-scripts/ifup-ovs
 %{_sysconfdir}/sysconfig/network-scripts/ifdown-ovs
-%endif
 %{_datadir}/openvswitch/bugtool-plugins/
 %{_datadir}/openvswitch/scripts/ovs-bugtool-*
 %{_datadir}/openvswitch/scripts/ovs-check-dead-ifs
