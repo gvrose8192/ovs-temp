@@ -30,8 +30,11 @@ done
 insert_mods () {
     # Somehow 'modprobe openvswitch' failed to load nf_conntrack_ipv4
     # and nf_conntrack_ipv6. We put a hack here to get rid of blocker.
-    modprobe nf_conntrack_ipv4
-    modprobe nf_conntrack_ipv6
+    if (modinfo nf_conntrack_ipv4) > /dev/null 2>&1; then
+        modprobe nf_conntrack_ipv4
+        modprobe nf_conntrack_ipv6
+    fi
+
     # Try loading openvswitch kernel module.
     action "Inserting openvswitch module" modprobe openvswitch
 }
