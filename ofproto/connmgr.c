@@ -2131,7 +2131,7 @@ ofmonitor_report(struct connmgr *mgr, struct rule *rule,
                  const struct rule_actions *old_actions)
     OVS_REQUIRES(ofproto_mutex)
 {
-    if (rule_is_hidden(rule)) {
+    if (!mgr || rule_is_hidden(rule)) {
         return;
     }
 
@@ -2234,6 +2234,10 @@ ofmonitor_flush(struct connmgr *mgr)
     OVS_REQUIRES(ofproto_mutex)
 {
     struct ofconn *ofconn;
+
+    if (!mgr) {
+        return;
+    }
 
     LIST_FOR_EACH (ofconn, connmgr_node, &mgr->conns) {
         struct rconn_packet_counter *counter = ofconn->monitor_counter;
