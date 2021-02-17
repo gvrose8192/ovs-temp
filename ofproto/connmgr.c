@@ -2131,7 +2131,7 @@ ofmonitor_report(struct connmgr *mgr, struct rule *rule,
                  const struct rule_actions *old_actions)
     OVS_REQUIRES(ofproto_mutex)
 {
-    if (!mgr || rule_is_hidden(rule)) {
+    if (rule_is_hidden(rule)) {
         return;
     }
 
