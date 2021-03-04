@@ -71,6 +71,19 @@ static struct genl_family dp_datapath_genl_family;
 
 static const struct nla_policy flow_policy[];
 
+#if RHEL_RELEASE_CODE < RHEL_RELEASE_VERSION(7,1)
+static struct genl_multicast_group ovs_dp_flow_multicast_group = {
+	.name = OVS_FLOW_MCGROUP,
+};
+
+static struct genl_multicast_group ovs_dp_datapath_multicast_group = {
+	.name = OVS_DATAPATH_MCGROUP,
+};
+
+struct genl_multicast_group ovs_dp_vport_multicast_group = {
+	.name = OVS_VPORT_MCGROUP,
+};
+#else
 static const struct genl_multicast_group ovs_dp_flow_multicast_group = {
 	.name = OVS_FLOW_MCGROUP,
 };
@@ -82,6 +95,7 @@ static const struct genl_multicast_group ovs_dp_datapath_multicast_group = {
 const struct genl_multicast_group ovs_dp_vport_multicast_group = {
 	.name = OVS_VPORT_MCGROUP,
 };
+#endif
 
 /* Check if need to build a reply message.
  * OVS userspace sets the NLM_F_ECHO flag if it needs the reply.
@@ -1448,7 +1462,11 @@ static const struct nla_policy flow_policy[OVS_FLOW_ATTR_MAX + 1] = {
 	[OVS_FLOW_ATTR_UFID_FLAGS] = { .type = NLA_U32 },
 };
 
+#if RHEL_RELEASE_CODE < RHEL_RELEASE_VERSION(7,1)
+static struct genl_ops dp_flow_genl_ops[] = {
+#else
 static const struct genl_ops dp_flow_genl_ops[] = {
+#endif
 	{ .cmd = OVS_FLOW_CMD_NEW,
 #ifdef HAVE_GENL_VALIDATE_FLAGS
 	  .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
@@ -1863,7 +1881,11 @@ static const struct nla_policy datapath_policy[OVS_DP_ATTR_MAX + 1] = {
 	[OVS_DP_ATTR_USER_FEATURES] = { .type = NLA_U32 },
 };
 
+#if RHEL_RELEASE_CODE < RHEL_RELEASE_VERSION(7,1)
+static struct genl_ops dp_datapath_genl_ops[] = {
+#else
 static const struct genl_ops dp_datapath_genl_ops[] = {
+#endif
 	{ .cmd = OVS_DP_CMD_NEW,
 #ifdef HAVE_GENL_VALIDATE_FLAGS
 	  .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
@@ -2331,7 +2353,11 @@ static const struct nla_policy vport_policy[OVS_VPORT_ATTR_MAX + 1] = {
 	[OVS_VPORT_ATTR_NETNSID] = { .type = NLA_S32 },
 };
 
+#if RHEL_RELEASE_CODE < RHEL_RELEASE_VERSION(7,1)
+static struct genl_ops dp_vport_genl_ops[] = {
+#else
 static const struct genl_ops dp_vport_genl_ops[] = {
+#endif
 	{ .cmd = OVS_VPORT_CMD_NEW,
 #ifdef HAVE_GENL_VALIDATE_FLAGS
 	  .validate = GENL_DONT_VALIDATE_STRICT | GENL_DONT_VALIDATE_DUMP,
