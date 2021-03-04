@@ -585,7 +585,11 @@ static struct genl_ops dp_meter_genl_ops[] = {
 	},
 };
 
+#if RHEL_RELEASE_CODE < RHEL_RELEASE_VERSION(7,1)
+static struct genl_multicast_group ovs_meter_multicast_group = {
+#else
 static const struct genl_multicast_group ovs_meter_multicast_group = {
+#endif
 	.name = OVS_METER_MCGROUP,
 };
 

@@ -2342,7 +2342,11 @@ static struct genl_ops ct_limit_genl_ops[] = {
 	},
 };
 
+#if RHEL_RELEASE_CODE < RHEL_RELEASE_VERSION(7,1)
+static struct genl_multicast_group ovs_ct_limit_multicast_group = {
+#else
 static const struct genl_multicast_group ovs_ct_limit_multicast_group = {
+#endif
 	.name = OVS_CT_LIMIT_MCGROUP,
 };
 
