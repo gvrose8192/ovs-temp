@@ -13,6 +13,8 @@
 # RPMBUILD_OPT='-D "kversion 3.10.0-693.1.1.el7.x86_64 3.10.0-693.17.1.el7.x86_64"'
 # to build package for mulitple kernel versions in the same package
 # This only works for the following kernels.
+#   - 3.10.0 major revision 123  (RHEL 7.0)
+#   - 3.10.0 major revision 229  (RHEL 7.1)
 #   - 3.10.0 major revision 327  (RHEL 7.2)
 #   - 3.10.0 major revision 693  (RHEL 7.4)
 #   - 3.10.0 major revision 957  (RHEL 7.6)
@@ -97,7 +99,8 @@ if grep -qs "suse" /etc/os-release; then
         %{_datadir}/openvswitch/scripts/ovs-kmod-manage.sh
     fi
 elif [ "$mainline_major" = "3" ] && [ "$mainline_minor" = "10" ] &&
-     { [ "$major_rev" = "327" ] || [ "$major_rev" = "693" ] || \
+     { [ "$major_rev" = "123" ] || [ "$major_rev" = "229" ] || \
+       [ "$major_rev" = "327" ] || [ "$major_rev" = "693" ] || \
        [ "$major_rev" = "957" ] || [ "$major_rev" == "1062" ] || \
        [ "$major_rev" = "1101" ] || [ "$major_rev" = "1127" ] || \
        [ "$major_rev" = "1160" ] ; }; then

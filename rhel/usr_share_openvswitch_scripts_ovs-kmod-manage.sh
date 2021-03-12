@@ -15,6 +15,8 @@
 # limitations under the License.
 
 # This script is intended to be used on the following kernels.
+#   - 3.10.0 major revision 123  (RHEL 7.0)
+#   - 3.10.0 major revision 229  (RHEL 7.1)
 #   - 3.10.0 major revision 327  (RHEL 7.2)
 #   - 3.10.0 major revision 693  (RHEL 7.4)
 #   - 3.10.0 major revision 957  (RHEL 7.6)
@@ -79,7 +81,17 @@ IFS='.\|-' read mainline_major mainline_minor mainline_patch major_rev \
 
 expected_rhel_base_minor="el7"
 if [ "$mainline_major" = "3" ] && [ "$mainline_minor" = "10" ]; then
-    if [ "$major_rev" = "327" ]; then
+    if [ "$major_rev" = "123" ]; then
+#        echo "rhel70"
+        comp_ver=2
+        ver_offset=4
+        installed_ver="$minor_rev"
+    elif [ "$major_rev" = "229" ]; then
+#        echo "rhel71"
+        comp_ver=8
+        ver_offset=4
+        installed_ver="$minor_rev"
+    elif [ "$major_rev" = "327" ]; then
 #        echo "rhel72"
         comp_ver=36
         ver_offset=4
