@@ -159,7 +159,7 @@ kversion=$(rpm -ql ${rpmname} | grep '\.ko$' | \
 IFS='.\|-' read installed_major installed_minor installed_patch \
     installed_major_rev installed_minor_rev installed_extra <<<"${kversion}"
 
-if [ "$installed_major_rev" -lt "$major_rev" ]; then
+if [ "$installed_major_rev" -lt "$major_rev" ] && [ "$mainline_major" = "3" ]; then
     echo "Not installing RPM with major revision $installed_major_rev" \
          "to kernel with greater major revision $major_rev.  Exiting"
     exit 1
